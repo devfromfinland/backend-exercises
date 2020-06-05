@@ -1,0 +1,22 @@
+{
+  "name": "backend-exercises",
+  "version": "1.0.0",
+  "description": "Starting from exercise 3.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "no test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devfromfinland/backend-exercises.git"
+  },
+  "keywords": [
+    "backend"
+  ],
+  "author": "Viet Phan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devfromfinland/backend-exercises/issues"
+  },
+  "homepage": "https://github.com/devfromfinland/backend-exercises#readme"
+}
