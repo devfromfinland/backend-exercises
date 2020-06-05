@@ -4,7 +4,9 @@
   "description": "Starting from exercise 3.1",
   "main": "index.js",
   "scripts": {
-    "test": "no test"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/devfromfinland/backend-exercises/issues"
   },
-  "homepage": "https://github.com/devfromfinland/backend-exercises#readme"
+  "homepage": "https://github.com/devfromfinland/backend-exercises#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
 }
