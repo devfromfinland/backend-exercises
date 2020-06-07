@@ -115,8 +115,7 @@ app.put('/api/persons/:id', (req, res, next) => {
   Person.findById(id, (error, result) => {
     if (error) {
       next(error)
-    }
-    else if (!result) {
+    } else if (!result) {
       console.log('no data')
       res.status(404).end()
     } else {
@@ -131,18 +130,18 @@ app.put('/api/persons/:id', (req, res, next) => {
   })
 })
 
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: 'unknown endpoint' })
+const unknownEndpoint = (req, res) => {
+  res.status(404).send({ error: 'unknown endpoint' })
 }
 
 // handler of requests with unknown endpoint
 app.use(unknownEndpoint)
 
-const errorHandler = (error, request, response, next) => {
+const errorHandler = (error, req, res, next) => {
   console.error(error.message)
 
   if (error.name === 'CastError') {
-    return response.status(400).send({ error: 'malformatted id' })
+    return res.status(400).send({ error: 'malformatted id' })
   } 
 
   next(error)
