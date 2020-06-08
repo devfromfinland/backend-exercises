@@ -1,0 +1,3 @@
+bug: windows confirm, press Esc instead of clicking 'Cancel', the input then can't be accessed until there are other action happens on the window
+
+bug: request protocol https fail
