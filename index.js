@@ -108,26 +108,26 @@ app.put('/api/persons/:id', (req, res, next) => {
     number: req.body.number
   }
 
-  Person.findByIdAndUpdate(id, person, { runValidators: true })
-    .then(updatedPerson => res.json(updatedPerson))
-    .catch(error => next(error))
+  // Person.findByIdAndUpdate(id, person, { runValidators: true })
+  //   .then(updatedPerson => res.json(updatedPerson))
+  //   .catch(error => next(error))
 
-  // Person.findById(id, (error, result) => {
-  //   if (error) {
-  //     next(error)
-  //   } else if (!result) {
-  //     console.log('no data')
-  //     res.status(404).end()
-  //   } else {
-  //     result.number = number
+  Person.findById(id, (error, result) => {
+    if (error) {
+      next(error)
+    } else if (!result) {
+      console.log('no data')
+      res.status(404).end()
+    } else {
+      result.number = number
 
-  //     result.save()
-  //       .then(result => {
-  //         res.json(result)
-  //       })
-  //       .catch(error => next(error))
-  //   }
-  // })
+      result.save()
+        .then(result => {
+          res.json(result)
+        })
+        .catch(error => next(error))
+    }
+  })
 })
 
 const unknownEndpoint = (req, res) => {
