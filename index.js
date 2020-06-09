@@ -14,14 +14,14 @@ app.use(morgan((tokens, req, res) => {
   // console.log('req', req.body)
   // console.log('res', res)
 
-  morgan.token('req-body', (req, res) => JSON.stringify(req.body))
-  
+  morgan.token('req-body', (req) => JSON.stringify(req.body))
+
   return [
     tokens.method(req, res),
     tokens.url(req, res),
     tokens.status(req, res),
     tokens.res(req, res, 'content-length'), '-',
-    tokens['response-time'](req, res), 'ms', 
+    tokens['response-time'](req, res), 'ms',
     tokens['req-body'](req, res),
   ].join(' ')
 }))
@@ -61,7 +61,7 @@ app.delete('/api/persons/:id', (req, res, next) => {
   const id = req.params.id
 
   Person.findByIdAndDelete(id)
-    .then(result => res.status(204).end())  // no content
+    .then(() => res.status(204).end())  // no content
     .catch(error => next(error))
 })
 
@@ -69,8 +69,8 @@ app.post('/api/persons', (req, res, next) => {
   const body = req.body
 
   if (!body.name || !body.number) {
-    return res.status(400).json({ 
-      error: 'content missing' 
+    return res.status(400).json({
+      error: 'content missing'
     })
   }
 
@@ -103,12 +103,11 @@ app.put('/api/persons/:id', (req, res, next) => {
   const id = req.params.id
   const number = req.body.number
 
-  const person = {
-    name: req.body.name,
-    number: req.body.number
-  }
-
-  // Person.findByIdAndUpdate(id, person, { runValidators: true })
+  // const person = {
+  //   name: req.body.name,
+  //   number: req.body.number
+  // }
+  // Person.findByIdAndUpdate(id, person)
   //   .then(updatedPerson => res.json(updatedPerson))
   //   .catch(error => next(error))
 
@@ -141,12 +140,12 @@ const errorHandler = (error, req, res, next) => {
   console.error(error.message)
 
   switch (error.name) {
-    case "CastError":
-      return res.status(400).send({ error: 'malformatted id' })
-    case "ValidationError":
-      return res.status(400).json({ error: error.message })
-    default:
-      next(error)
+  case 'CastError':
+    return res.status(400).send({ error: 'malformatted id' })
+  case 'ValidationError':
+    return res.status(400).json({ error: error.message })
+  default:
+    next(error)
   }
 }
 

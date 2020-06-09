@@ -9,7 +9,7 @@ const url = process.env.MONGODB_URI
 console.log('connecting to', url)
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(result => {
+  .then(() => {
     console.log('connected to MongoDB')
   })
   .catch((error) => {
@@ -18,9 +18,9 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const personSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true, minlength: 3 },
-  number: { 
-    type: String, 
-    required: true, 
+  number: {
+    type: String,
+    required: true,
     minlength: 8,
     validate: {
       validator: (value) => {

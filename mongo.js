@@ -5,7 +5,7 @@ if (process.argv.length < 3) {
   process.exit(1)
 }
 
-const dbName = "phonebook"
+const dbName = 'phonebook'
 const password = process.argv[2]
 const name = process.argv[3]
 const phone = process.argv[4]
@@ -38,12 +38,12 @@ const addPerson = (personName, personNumber) => {
     // })
 }
 
-const logPersons = (persons) => {
-  console.log('phonebook:')
-  for (let i = 0; i < persons.length; i++) {
-    console.log(`${persons[i].name} ${persons[i].number}`)
-  }
-}
+// const logPersons = (persons) => {
+//   console.log('phonebook:')
+//   for (let i = 0; i < persons.length; i++) {
+//     console.log(`${persons[i].name} ${persons[i].number}`)
+//   }
+// }
 
 const getAll = () => {
   const url = `mongodb+srv://fullstack:${password}@cluster0-jcavg.mongodb.net/${dbName}`
